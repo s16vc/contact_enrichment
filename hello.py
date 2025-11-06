@@ -416,20 +416,22 @@ def prompt_profil_comparison(
 ) -> Dict[str, Any]:
     import json
 
-    # Old profile from trigger event
+    # Old profile from trigger event - safely access fields with defaults
+    fields = data.get("fields", {})
     old_profil = {
-        "name": data["fields"]["Name"],
-        "desc": data["fields"]["Description"],
-        "company": data["fields"]["Companies"],
-        "title": data["fields"]["Title"],
+        "name": fields.get("Name", ""),
+        "desc": fields.get("Description", ""),
+        "company": fields.get("Companies", []),
+        "title": fields.get("Title", ""),
     }
 
-    # Current profile from LinkedIn
+    # Current profile from LinkedIn - safely access nested data
+    profile_data = profil_data.get("data", {})
     current_profil = {
-        "name": profil_data["data"]["full_name"],
-        "desc": profil_data["data"]["about"],
-        "company": profil_data["data"]["company"],
-        "title": profil_data["data"]["headline"],
+        "name": profile_data.get("full_name", ""),
+        "desc": profile_data.get("about", ""),
+        "company": profile_data.get("company", ""),
+        "title": profile_data.get("headline", ""),
         "recentPosts": profil_posts,  # Already a list of posts
     }
 
@@ -576,7 +578,16 @@ def contact_enrichment(
     import urllib.parse
 
     print(f"data: {_data}")
-    profil_url = urllib.parse.quote(_data.get("fields").get("LinkedIn"), safe=":/?&=")
+
+    # Safely access nested fields
+    fields = _data.get("fields", {})
+    linkedin_url = fields.get("LinkedIn", "")
+
+    if not linkedin_url:
+        print("No LinkedIn URL provided, cannot enrich contact")
+        return
+
+    profil_url = urllib.parse.quote(linkedin_url, safe=":/?&=")
     print(profil_url)
     profil_data = get_linkedin_profil(profil_url)
     profil_posts = get_linkedin_posts(profil_url)
@@ -619,19 +630,23 @@ Avoid fluff, exaggeration, or irrelevant details.
         )
         print(f"Generated Description: {gen_description}")
 
-        # formatting
-        experiences = profil_data.get("data").get("experiences")
+        # formatting - safely handle experiences
+        profile_data = profil_data.get("data", {})
+        experiences = profile_data.get("experiences", [])
 
-        history = "".join(
-            [
-                f"""{exp.get("company")}
-            {exp.get("title")}
-            {exp.get("date_range")}
-            {exp.get("description")}
+        history = ""
+        if experiences:
+            history = "".join(
+                [
+                    f"""{exp.get("company", "")}
+            {exp.get("title", "")}
+            {exp.get("date_range", "")}
+            {exp.get("description", "")}
             """
-                for exp in experiences
-            ]
-        )
+                    for exp in experiences
+                ]
+            )
+
         formatted_description = f"""
         {gen_description}
 
@@ -639,8 +654,12 @@ Avoid fluff, exaggeration, or irrelevant details.
         """
         print(formatted_description)
 
-        # update record in airtable
-        update_at_record(_data.get("id"), formatted_description)
+        # update record in airtable - safely get record ID
+        record_id = _data.get("id", "")
+        if record_id:
+            update_at_record(record_id, formatted_description)
+        else:
+            print("No record ID provided, skipping Airtable update")
 
 
 if __name__ == "__main__":
