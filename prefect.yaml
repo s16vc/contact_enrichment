@@ -1,0 +1,35 @@
+# Welcome to your prefect.yaml file! You can use this file for storing and managing
+# configuration for deploying your flows. We recommend committing this file to source
+# control along with your flow code.
+
+# Generic metadata about this project
+name: 5min-memo-prefect
+prefect-version: 3.4.25
+
+# build section allows you to manage and build docker images
+build: null
+
+# push section allows you to manage if and how this project is uploaded to remote locations
+push: null
+
+# pull section allows you to provide instructions for cloning this project in remote locations
+pull:
+- prefect.deployments.steps.set_working_directory:
+    directory: /home/isham/projects/s16vc/5min-memo-prefect
+
+# the deployments section allows you to provide configuration for deploying flows
+deployments:
+- name: memo_generation
+  version: null
+  tags: []
+  concurrency_limit: null
+  description: |-
+    Main flow that orchestrates the 3-step text generation process.
+    Each step calls OpenRouter API and may use outputs from previous steps.
+  entrypoint: hello.py:memo_generation
+  parameters: {}
+  work_pool:
+    name: mainPool
+    work_queue_name: null
+    job_variables: {}
+  schedules: []
