@@ -65,35 +65,6 @@ def generate_text(
     return completion.choices[0].message.content
 
 
-@task(name="Resume Pipedream Workflow", retries=3, retry_delay_seconds=10)
-def resume_pipedream(record_id: str, final_text: str) -> None:
-    """
-    Send the final generated text to the Pipedream resume URL to continue the workflow.
-
-    Args:
-        record_id: The Airtable record ID to fetch the resume URL
-        final_text: The final generated memo text to send back
-    """
-    if not record_id:
-        print("No record_id provided, skipping Pipedream workflow resume")
-        return
-
-    try:
-        response = requests.post(
-            "https://eo3ph3sbyg22xc7.m.pipedream.net",
-            json={"final_memo": final_text, "record_id": record_id},
-            headers={"Content-Type": "application/json"},
-            timeout=30,
-        )
-        response.raise_for_status()
-        print(
-            f"Successfully resumed Pipedream workflow. Status: {response.status_code}"
-        )
-    except requests.exceptions.RequestException as e:
-        print(f"Error resuming Pipedream workflow: {e}")
-        raise
-
-
 @task(name="Linkedin Profile", retries=2, retry_delay_seconds=300)
 def get_linkedin_profil(profil_url: str):
     req_url = f"https://fresh-linkedin-profile-data.p.rapidapi.com/enrich-lead?linkedin_url={profil_url}&include_skills=false&include_certifications=false&include_publications=false&include_honors=false&include_volunteers=false&include_projects=false&include_patents=false&include_courses=false&include_organizations=false&include_profile_status=false&include_company_public_url=false"
@@ -574,6 +545,45 @@ def update_at_record(record_id: str, description: str, headline: str) -> None:
         raise
 
 
+@task(name="Mark Record as Enriched", retries=2, retry_delay_seconds=30)
+def mark_as_enriched(record_id: str, reason: str = "Skipped") -> None:
+    """
+    Mark an Airtable record as enriched without updating description.
+    Used when enrichment is skipped (no LinkedIn URL, profile not found, etc.)
+
+    Args:
+        record_id: The Airtable record ID to update
+        reason: Reason why enrichment was skipped
+    """
+    if not record_id:
+        print("No record_id provided, skipping Airtable update")
+        return
+
+    # Get Airtable credentials from environment
+    api_key = os.getenv("AIRTABLE_API_KEY")
+    base_id = "app18YWzPlAFs2umJ"
+    table_name = "tblIkmDFlC91L9EHi"
+
+    if not all([api_key, base_id, table_name]):
+        raise ValueError(
+            "Missing Airtable configuration. Please set AIRTABLE_API_KEY, "
+            "AIRTABLE_BASE_ID, and AIRTABLE_TABLE_NAME in your .env file"
+        )
+
+    try:
+        # Initialize the Airtable API and get the table
+        api = Api(api_key)
+        table = api.table(base_id, table_name)
+
+        # Mark as enriched with reason
+        table.update(record_id, {"Enriched": True})
+
+        print(f"Successfully marked record {record_id} as enriched (Reason: {reason})")
+    except Exception as e:
+        print(f"Error marking Airtable record as enriched: {e}")
+        raise
+
+
 @flow(name="Contact Enrichment Flow", log_prints=True)
 def contact_enrichment(
     data: Optional[object] = None,
@@ -589,9 +599,12 @@ def contact_enrichment(
     # Safely access nested fields
     fields = _data.get("fields", {})
     linkedin_url = fields.get("LinkedIn", "")
+    record_id = _data.get("id", "")
 
     if not linkedin_url:
         print("No LinkedIn URL provided, cannot enrich contact")
+        if record_id:
+            mark_as_enriched(record_id, "No LinkedIn URL")
         return
 
     profil_url = urllib.parse.quote(linkedin_url, safe=":/?&=")
@@ -601,10 +614,15 @@ def contact_enrichment(
 
     # Check if profile data was successfully retrieved
     if not profil_data or profil_data.get("data") is None:
-        print(
-            f"LinkedIn profile not found or unavailable: {profil_data.get('message', 'Unknown error')}"
+        error_message = (
+            profil_data.get("message", "Unknown error")
+            if profil_data
+            else "No response"
         )
+        print(f"LinkedIn profile not found or unavailable: {error_message}")
         print("Skipping contact enrichment for this profile")
+        if record_id:
+            mark_as_enriched(record_id, f"Profile not found: {error_message}")
         return
 
     # weekly posts
@@ -677,8 +695,7 @@ Avoid fluff, exaggeration, or irrelevant details.
         """
         print(formatted_description)
 
-        # update record in airtable - safely get record ID
-        record_id = _data.get("id", "")
+        # update record in airtable
         if record_id:
             update_at_record(
                 record_id, formatted_description, profile_data.get("headline", "")
