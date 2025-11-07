@@ -564,7 +564,7 @@ def update_at_record(record_id: str, description: str) -> None:
         table = api.table(base_id, table_name)
 
         # Update the record with the new description
-        table.update(record_id, {"Description": description})
+        table.update(record_id, {"Description": description, "Enriched": True})
 
         print(f"Successfully updated Airtable record {record_id}")
     except Exception as e:
@@ -599,7 +599,9 @@ def contact_enrichment(
 
     # Check if profile data was successfully retrieved
     if not profil_data or profil_data.get("data") is None:
-        print(f"LinkedIn profile not found or unavailable: {profil_data.get('message', 'Unknown error')}")
+        print(
+            f"LinkedIn profile not found or unavailable: {profil_data.get('message', 'Unknown error')}"
+        )
         print("Skipping contact enrichment for this profile")
         return
 
@@ -625,7 +627,9 @@ def contact_enrichment(
 
     if needs_update:
         # Safely get profile about section
-        profile_about = profil_data.get("data", {}).get("about", "No description available")
+        profile_about = profil_data.get("data", {}).get(
+            "about", "No description available"
+        )
 
         gen_description = generate_text(
             user_prompt=f"Here is the description: {profile_about}",
