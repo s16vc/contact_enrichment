@@ -603,13 +603,16 @@ def contact_enrichment(
     one_week_ago = datetime.now() - timedelta(days=7)
 
     # Filter and map recent posts from the last 7 days
+    # Handle case where data might be None
+    posts_data = profil_posts.get("data") or []
     recent_posts = [
         {"article_title": item.get("article_title"), "text": item.get("text")}
-        for item in profil_posts.get("data", [])
-        if datetime.strptime(item["posted"], "%Y-%m-%d %H:%M:%S") >= one_week_ago
+        for item in posts_data
+        if item.get("posted")
+        and datetime.strptime(item["posted"], "%Y-%m-%d %H:%M:%S") >= one_week_ago
     ]
 
-    prompts = prompt_profil_comparison(data, profil_data, profil_posts)
+    prompts = prompt_profil_comparison(data, profil_data, recent_posts)
     needs_update = does_profile_need_update(prompts)
     print(f"needs_update: {needs_update}")
 
