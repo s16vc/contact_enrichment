@@ -533,7 +533,7 @@ def does_profile_need_update(prompts: Any) -> Dict[str, Any]:
 
 
 @task(name="Update Airtable Record", retries=2, retry_delay_seconds=30)
-def update_at_record(record_id: str, description: str) -> None:
+def update_at_record(record_id: str, description: str, headline: str) -> None:
     """
     Update an Airtable record with the new description.
 
@@ -564,7 +564,9 @@ def update_at_record(record_id: str, description: str) -> None:
         table = api.table(base_id, table_name)
 
         # Update the record with the new description
-        table.update(record_id, {"Description": description, "Enriched": True})
+        table.update(
+            record_id, {"Description": description, "Enriched": True, "Title": headline}
+        )
 
         print(f"Successfully updated Airtable record {record_id}")
     except Exception as e:
@@ -678,7 +680,9 @@ Avoid fluff, exaggeration, or irrelevant details.
         # update record in airtable - safely get record ID
         record_id = _data.get("id", "")
         if record_id:
-            update_at_record(record_id, formatted_description)
+            update_at_record(
+                record_id, formatted_description, profile_data.get("headline", "")
+            )
         else:
             print("No record ID provided, skipping Airtable update")
 
