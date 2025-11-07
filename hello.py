@@ -547,6 +547,8 @@ def update_at_record(record_id: str, description: str) -> None:
     base_id = "app18YWzPlAFs2umJ"
     table_name = "tblIkmDFlC91L9EHi"
 
+    print(f"api_key: {api_key}, base_id: {base_id}, table_name: {table_name}")
+
     if not all([api_key, base_id, table_name]):
         raise ValueError(
             "Missing Airtable configuration. Please set AIRTABLE_API_KEY, "

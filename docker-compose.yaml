@@ -74,7 +74,9 @@ services:
     environment:
       <<: *common-env
       PREFECT_API_URL: http://prefect-server:4200/api
-    command: prefect worker start --pool local-pool
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: prefect worker start --pool mainPool
 
 volumes:
   postgres_data:
