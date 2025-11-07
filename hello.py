@@ -98,75 +98,75 @@ def resume_pipedream(record_id: str, final_text: str) -> None:
 def get_linkedin_profil(profil_url: str):
     req_url = f"https://fresh-linkedin-profile-data.p.rapidapi.com/enrich-lead?linkedin_url={profil_url}&include_skills=false&include_certifications=false&include_publications=false&include_honors=false&include_volunteers=false&include_projects=false&include_patents=false&include_courses=false&include_organizations=false&include_profile_status=false&include_company_public_url=false"
     try:
-        # response = requests.get(
-        #     req_url,
-        #     headers={
-        #         "Content-Type": "application/json",
-        #         "x-rapidapi-host": "fresh-linkedin-profile-data.p.rapidapi.com",
-        #         "x-rapidapi-key": os.getenv("RAPID_API_KEY"),
-        #     },
-        # )
-        # data = response.json()
-        # print(data)
-        # return data
-        return {
-            "data": {
-                "about": (
-                    "Accomplished CEO, business executive, and entrepreneur with an exceptional track "
-                    "record of P&L ownership, driving fiscally responsible business operations, and "
-                    "achieving remarkable growth and customer success.\n\nA proven leader and mentor, "
-                    "I am passionate about guiding the next generation of tech entrepreneurs to reach "
-                    "their full potential."
-                ),
-                "city": "Huntington Beach",
-                "company": None,
-                "company_description": None,
-                "company_domain": "",
-                "company_employee_count": None,
-                "company_employee_range": None,
-                "company_industry": None,
-                "company_linkedin_url": None,
-                "company_logo_url": None,
-                "company_website": None,
-                "company_year_founded": None,
-                "connection_count": 4562,
-                "country": "United States",
-                "current_company_join_month": None,
-                "current_company_join_year": None,
-                "current_job_duration": "",
-                "educations": [],
-                "email": "",
-                "experiences": [],
-                "first_name": "Brent",
-                "follower_count": 5281,
-                "full_name": "Brent Hayward",
-                "headline": "Head of Competitive Intelligence, Salesforce",
-                "hq_city": None,
-                "hq_country": None,
-                "hq_region": None,
-                "is_creator": False,
-                "is_influencer": False,
-                "is_premium": False,
-                "is_verified": True,
-                "job_title": None,
-                "languages": [],
-                "last_name": "Hayward",
-                "linkedin_url": "https://www.linkedin.com/in/brenthayward/",
-                "location": "Huntington Beach, California, United States",
-                "phone": "",
-                "profile_id": "8613225",
-                "profile_image_url": (
-                    "https://media.licdn.com/dms/image/v2/D4D03AQEqybBivFdZtQ/profile-displayphoto-"
-                    "shrink_800_800/profile-displayphoto-shrink_800_800/0/1715269992354?"
-                    "e=1764201600&v=beta&t=5GYp7Cjbf8-Dhr8Fd60yO2RvRjUgW6m_YV7zSxHRPwU"
-                ),
-                "public_id": "brenthayward",
-                "school": "",
-                "state": "California",
-                "urn": "ACoAAACDbWkB8KJrVGkdxL9H-10JuniQwgRE9xk",
+        response = requests.get(
+            req_url,
+            headers={
+                "Content-Type": "application/json",
+                "x-rapidapi-host": "fresh-linkedin-profile-data.p.rapidapi.com",
+                "x-rapidapi-key": os.getenv("RAPID_API_KEY"),
             },
-            "message": "ok",
-        }
+        )
+        data = response.json()
+        print(data)
+        return data
+        # return {
+        #     "data": {
+        #         "about": (
+        #             "Accomplished CEO, business executive, and entrepreneur with an exceptional track "
+        #             "record of P&L ownership, driving fiscally responsible business operations, and "
+        #             "achieving remarkable growth and customer success.\n\nA proven leader and mentor, "
+        #             "I am passionate about guiding the next generation of tech entrepreneurs to reach "
+        #             "their full potential."
+        #         ),
+        #         "city": "Huntington Beach",
+        #         "company": None,
+        #         "company_description": None,
+        #         "company_domain": "",
+        #         "company_employee_count": None,
+        #         "company_employee_range": None,
+        #         "company_industry": None,
+        #         "company_linkedin_url": None,
+        #         "company_logo_url": None,
+        #         "company_website": None,
+        #         "company_year_founded": None,
+        #         "connection_count": 4562,
+        #         "country": "United States",
+        #         "current_company_join_month": None,
+        #         "current_company_join_year": None,
+        #         "current_job_duration": "",
+        #         "educations": [],
+        #         "email": "",
+        #         "experiences": [],
+        #         "first_name": "Brent",
+        #         "follower_count": 5281,
+        #         "full_name": "Brent Hayward",
+        #         "headline": "Head of Competitive Intelligence, Salesforce",
+        #         "hq_city": None,
+        #         "hq_country": None,
+        #         "hq_region": None,
+        #         "is_creator": False,
+        #         "is_influencer": False,
+        #         "is_premium": False,
+        #         "is_verified": True,
+        #         "job_title": None,
+        #         "languages": [],
+        #         "last_name": "Hayward",
+        #         "linkedin_url": "https://www.linkedin.com/in/brenthayward/",
+        #         "location": "Huntington Beach, California, United States",
+        #         "phone": "",
+        #         "profile_id": "8613225",
+        #         "profile_image_url": (
+        #             "https://media.licdn.com/dms/image/v2/D4D03AQEqybBivFdZtQ/profile-displayphoto-"
+        #             "shrink_800_800/profile-displayphoto-shrink_800_800/0/1715269992354?"
+        #             "e=1764201600&v=beta&t=5GYp7Cjbf8-Dhr8Fd60yO2RvRjUgW6m_YV7zSxHRPwU"
+        #         ),
+        #         "public_id": "brenthayward",
+        #         "school": "",
+        #         "state": "California",
+        #         "urn": "ACoAAACDbWkB8KJrVGkdxL9H-10JuniQwgRE9xk",
+        #     },
+        #     "message": "ok",
+        # }
     except requests.exceptions.RequestException as e:
         raise
 
@@ -175,238 +175,240 @@ def get_linkedin_profil(profil_url: str):
 def get_linkedin_posts(profil_url: str):
     req_url = f"https://fresh-linkedin-profile-data.p.rapidapi.com/get-profile-posts?linkedin_url={profil_url}&type=posts"
     try:
-        # response = requests.get(
-        #     req_url,
-        #     headers={
-        #         "Content-Type": "application/json",
-        #         "x-rapidapi-host": "fresh-linkedin-profile-data.p.rapidapi.com",
-        #         "x-rapidapi-key": os.getenv("RAPID_API_KEY"),
-        #     },
-        # )
-        # print(response)
-        return {
-            "data": [
-                {
-                    "attributes": [
-                        {
-                            "first": "Joe",
-                            "headline": "General Partner at 8VC",
-                            "last": "Lonsdale",
-                            "public_id": "jtlonsdale",
-                            "type": "profile",
-                            "urn": "ACoAAAAWNzEBFz86iNKBrSdxjEOkqpZZvV76vQs",
-                        },
-                        {
-                            "company_id": "10317593",
-                            "name": "8VC",
-                            "public_id": "8vc",
-                            "type": "company",
-                        },
-                        {
-                            "first": "Eric",
-                            "headline": "CEO at Addepar - We're Hiring!!",
-                            "last": "Poirier",
-                            "public_id": "epoirier",
-                            "type": "profile",
-                            "urn": "ACoAAABCAiABfXPQjNQTuUuuw69IMo8VZhPQ1M4",
-                        },
-                        {
-                            "company_id": "705598",
-                            "name": "Addepar",
-                            "public_id": "addepar",
-                            "type": "company",
-                        },
-                        {
-                            "first": "Brent",
-                            "headline": "Head of Competitive Intelligence, Salesforce",
-                            "last": "Hayward",
-                            "public_id": "brenthayward",
-                            "type": "profile",
-                            "urn": "ACoAAACDbWkB8KJrVGkdxL9H-10JuniQwgRE9xk",
-                        },
-                        {
-                            "company_id": "3185",
-                            "name": "Salesforce",
-                            "public_id": "salesforce",
-                            "type": "company",
-                        },
-                        {
-                            "first": "David",
-                            "headline": "Vice President and CTO for Strategic Incubations at Microsoft | Author, O'Reilly's \"The AI Organization\"",
-                            "last": "Carmona",
-                            "public_id": "david-carmona",
-                            "type": "profile",
-                            "urn": "ACoAAACwKUUBaMp5tJwkp-qLN2ctY8lCJCZZIqE",
-                        },
-                        {
-                            "company_id": "1035",
-                            "name": "Microsoft",
-                            "public_id": "microsoft",
-                            "type": "company",
-                        },
-                    ],
-                    "images": [],
-                    "num_comments": 3,
-                    "num_empathy": 3,
-                    "num_interests": 2,
-                    "num_likes": 127,
-                    "num_praises": 12,
-                    "num_reactions": 144,
-                    "num_reposts": 21,
-                    "post_url": "https://www.linkedin.com/feed/update/urn:li:activity:7204773567891173377/",
-                    "posted": "2024-06-07 09:17:56",
-                    "poster_linkedin_url": "https://www.linkedin.com/company/hgcapital",
-                    "repost_stats": {
-                        "num_appreciations": 0,
-                        "num_comments": 3,
-                        "num_empathy": 0,
-                        "num_interests": 4,
-                        "num_likes": 71,
-                        "num_maybe": 0,
-                        "num_praises": 7,
-                        "num_reactions": 82,
-                        "num_reposts": 2,
-                    },
-                    "repost_urn": "7207385164815945728",
-                    "reposted": "2024-06-14 14:15:30",
-                    "reshared": True,
-                    "resharer_comment": "It was great to speak with so many like-minded leaders at the Hg Capital Leadership conference last week and thank you for the great questions and quality of the debate. Some post conference thoughts:\n\n1) The speed of change in the generative AI field is actually increasing, and no one can afford to sit on the sidelines. Companies need to address how generative AI changes both their internal operations and external products/services.\n\n2) To be successful, generative AI projects need to be integrated into the flow of day-to-day work. This allows you to bring relevant context to enhance the quality of any response - and metadata matters!  And as the early wave of consumer AI starts to merge with business AI, nothing is more important than trust.\n\n3) Generative AI projects need exec sponsorship and a business value case first - they are too important to sit as a pilot/POC with no outcome in mind.  Every great experiment starts with a discovery in mind, or a hypothesis to be proven or disproven. \n\nThank you Christopher Kindt, Sebastien Briens, Jason Richards, Lucio Di Ciaccio, Matthew Brockman for the invitation to speak and your hospitality. Special thanks to Polly Dean, and everyone at team Hg for the organizing and logistics.",
-                    "text": "Today wraps our Software Leadership Gathering 2024! This year brought an even larger congregation of 120+ specially selected transatlantic leaders, who all stepped away from their day-to-day to engage in our annual retreat to discuss the shifting ‘techtonics’ impacting our industry.\n \nThe quality of discussion and value of expertise shared this year was outstanding - leaders from inside and outside of the Hg ecosystem taking on the world of fast-evolving technology. \n \nA special thank you to our speakers Joe Lonsdale (8VC) and founder of several tech unicorns), Eric Poirier (Addepar), Brent Hayward (Salesforce), David Carmona (Microsoft), Nagraj Kashyap (Touring Capital), Jae  Sook Evans (Oracle), Raghu Raghuram (VMware), Morgan Housel (best-selling author) and special guest Massimo Bottura - one of Michelin’s most highly decorated chefs and owner of two-year best restaurant in the world.\n\nMore to come in the coming weeks, but these snippets open up a little of the quality of the discussion: \n \n- The billion-dollar playbook => if you want to build a $ billion company today, you need to look at what’s possible now, that wasn’t possible five years ago.\n \n- The greatest value that AI unlocks is in services => AI suddenly allows us to compete with decades-old services companies. This is where the next value creation and innovation wave is.\n \n- Innovation through an engineering-led culture =>The greatest technology happens when people ignore ROI. Keep the ‘adults’ separate from the innovators!\n \n- Step back from the GenAI hype-cycle => People tend to over-estimate the speed-of-change and underestimate long-term impact and scale-of-change.\n \n- Agentic models and ‘middleware’ in GenAI => Here lies the next wave of GenAI adoption, moving on from internal productivity and efficiency gains, and towards long term revenue growth.\n\n- Cloud evolution in response to data sovereignty =>  Data privacy is really at the core of what is important - customers want control over their data.\n\n- Applications will become intrinsically tied to LLMs => The app stack will fundamentally change over the next few years. \n\n- What doesn’t change => Focusing on the things that never change is the secret to really understand the future. \n \nTo everyone else who attended across the software ecosystem, we’ll see you again next year!\n\n#SLG2024 #shiftingtechtonics. \n \nFor the latest on Hg and portfolio news, subscribe to our monthly updates: https://lnkd.in/esXyfRAv",
-                    "time": "1 year ago",
-                    "urn": "7204773567891173377",
-                    "video": {
-                        "duration": 106433,
-                        "stream_url": "https://dms.licdn.com/playlist/vid/v2/D4E05AQETjwui8_am2A/mp4-720p-30fp-crf28/mp4-720p-30fp-crf28/0/1717751875741?e=1762912800&v=beta&t=3Ih3F51NOkcp-TggqdsPcTjVQbyyq7Kmgg20MxM0b74",
-                    },
-                },
-                {
-                    "attributes": [
-                        {
-                            "first": "Brent",
-                            "headline": "Head of Competitive Intelligence, Salesforce",
-                            "last": "Hayward",
-                            "public_id": "brenthayward",
-                            "type": "profile",
-                            "urn": "ACoAAACDbWkB8KJrVGkdxL9H-10JuniQwgRE9xk",
-                        }
-                    ],
-                    "images": [],
-                    "num_appreciations": 2,
-                    "num_comments": 1,
-                    "num_empathy": 6,
-                    "num_interests": 9,
-                    "num_likes": 266,
-                    "num_praises": 11,
-                    "num_reactions": 294,
-                    "num_reposts": 40,
-                    "post_url": "https://www.linkedin.com/feed/update/urn:li:activity:7071488498809135105/",
-                    "posted": "2023-06-05 14:10:40",
-                    "poster_linkedin_url": "https://www.linkedin.com/company/mulesoft",
-                    "repost_stats": {
-                        "num_appreciations": 2,
-                        "num_comments": 1,
-                        "num_empathy": 6,
-                        "num_interests": 9,
-                        "num_likes": 266,
-                        "num_maybe": 0,
-                        "num_praises": 11,
-                        "num_reactions": 294,
-                        "num_reposts": 40,
-                    },
-                    "repost_urn": "7071488877013680128",
-                    "reposted": "2023-06-05 14:12:10",
-                    "reshared": True,
-                    "text": "1, 2, 3...automate! Brent Hayward shares three steps to drive intelligent automation in your business: https://muley.cc/45NGcG5",
-                    "time": "2 years ago",
-                    "urn": "7071488498809135105",
-                    "video": {
-                        "duration": 30000,
-                        "stream_url": "https://dms.licdn.com/playlist/vid/v2/D4D10AQHr5dOfnGoMlw/mp4-720p-30fp-crf28/mp4-720p-30fp-crf28/0/1685974224095?e=1762912800&v=beta&t=J51D6u4V3jQy5A8Yme7Go0XCJ9KxByfFslZ19lKyUkI",
-                    },
-                },
-                {
-                    "attributes": [
-                        {
-                            "company_id": "31354582",
-                            "name": "Agentforce 360 Platform",
-                            "public_id": "salesforce-platform",
-                            "type": "company",
-                        },
-                        {
-                            "first": "Brent",
-                            "headline": "Head of Competitive Intelligence, Salesforce",
-                            "last": "Hayward",
-                            "public_id": "brenthayward",
-                            "type": "profile",
-                            "urn": "ACoAAACDbWkB8KJrVGkdxL9H-10JuniQwgRE9xk",
-                        },
-                        {
-                            "first": "Marla",
-                            "headline": "Senior Vice President, Product Management at Salesforce",
-                            "last": "Hay ",
-                            "public_id": "marlahay",
-                            "type": "profile",
-                            "urn": "ACoAAACP6okBf8YgWEaX31lS7QDKXo3G8hIhn4c",
-                        },
-                        {
-                            "first": "Sarah",
-                            "headline": "VP of Technology, AI (+ Machine Learning) at Intuit! Former Salesforce, Pivotal, PhD Biomedical Informatics, Stanford, SAIL (Stanford Artificial Intelligence Laboratory)",
-                            "last": "Aerni",
-                            "public_id": "sarahaerni",
-                            "type": "profile",
-                            "urn": "ACoAAAJ4YtQBqd6DpwxHTU_VIPWI5UD_KAI0Oig",
-                        },
-                        {
-                            "first": "Sanjna",
-                            "headline": "SVP of Product Marketing at Salesforce",
-                            "last": "Parulekar",
-                            "public_id": "sanjna-parulekar-0248a537",
-                            "type": "profile",
-                            "urn": "ACoAAAfI29wB9itqXFz_Okw_RnFfJ44r3wvI3H8",
-                        },
-                        {
-                            "first": "Kreena",
-                            "headline": "Director, Product Management at Salesforce (MuleSoft)",
-                            "last": "Mehta",
-                            "public_id": "kreenasmehta",
-                            "type": "profile",
-                            "urn": "ACoAABC-zdQBSIAVBk9pTX3PvuIE-CetJo7gjac",
-                        },
-                    ],
-                    "document": {
-                        "page_count": 3,
-                        "title": "IT Keynote: Build Your Customer Company at WTNY",
-                        "url": "https://media.licdn.com/dms/document/media/v2/D4E1FAQEZujDCzbJsaA/feedshare-document-url-metadata-scrapper-pdf/feedshare-document-url-metadata-scrapper-pdf/0/1682600524136?e=1762912800&v=beta&t=9FaDNO3smDXm0TNh6pKmiJfNikb8RqxtCWVV50OOEgs",
-                    },
-                    "images": [],
-                    "num_comments": 2,
-                    "num_likes": 68,
-                    "num_praises": 2,
-                    "num_reactions": 70,
-                    "num_reposts": 12,
-                    "post_url": "https://www.linkedin.com/feed/update/urn:li:activity:7057375355241652225/",
-                    "posted": "2023-04-27 15:30:04",
-                    "poster_linkedin_url": "https://www.linkedin.com/company/mulesoft",
-                    "repost_stats": {
-                        "num_appreciations": 0,
-                        "num_comments": 2,
-                        "num_empathy": 0,
-                        "num_interests": 0,
-                        "num_likes": 68,
-                        "num_maybe": 0,
-                        "num_praises": 2,
-                        "num_reactions": 70,
-                        "num_reposts": 12,
-                    },
-                    "repost_urn": "7058828883910877184",
-                    "reposted": "2023-05-01 15:45:52",
-                    "reshared": True,
-                    "text": "MuleSoft 🤝 Salesforce Platform\nMaking it easier for you to deploy faster, increasing developer efficiency, and saving on IT costs by connecting your data, automating intelligent processes, and deploying securely. Tune into the IT Keynote at #SalesforceTour New York or on Salesforce+. Let’s unleash innovation together: https://muley.cc/3LxoOgK\n\nJoin Brent Hayward, Marla Hay, Sarah Aerni, Sanjna Parulekar, and Kreena Mehta to Build Your Customer Company.",
-                    "time": "2 years ago",
-                    "urn": "7057375355241652225",
-                },
-            ]
-        }
+        response = requests.get(
+            req_url,
+            headers={
+                "Content-Type": "application/json",
+                "x-rapidapi-host": "fresh-linkedin-profile-data.p.rapidapi.com",
+                "x-rapidapi-key": os.getenv("RAPID_API_KEY"),
+            },
+        )
+        data = response.json()
+        print(data)
+        return data
+        # return {
+        #     "data": [
+        #         {
+        #             "attributes": [
+        #                 {
+        #                     "first": "Joe",
+        #                     "headline": "General Partner at 8VC",
+        #                     "last": "Lonsdale",
+        #                     "public_id": "jtlonsdale",
+        #                     "type": "profile",
+        #                     "urn": "ACoAAAAWNzEBFz86iNKBrSdxjEOkqpZZvV76vQs",
+        #                 },
+        #                 {
+        #                     "company_id": "10317593",
+        #                     "name": "8VC",
+        #                     "public_id": "8vc",
+        #                     "type": "company",
+        #                 },
+        #                 {
+        #                     "first": "Eric",
+        #                     "headline": "CEO at Addepar - We're Hiring!!",
+        #                     "last": "Poirier",
+        #                     "public_id": "epoirier",
+        #                     "type": "profile",
+        #                     "urn": "ACoAAABCAiABfXPQjNQTuUuuw69IMo8VZhPQ1M4",
+        #                 },
+        #                 {
+        #                     "company_id": "705598",
+        #                     "name": "Addepar",
+        #                     "public_id": "addepar",
+        #                     "type": "company",
+        #                 },
+        #                 {
+        #                     "first": "Brent",
+        #                     "headline": "Head of Competitive Intelligence, Salesforce",
+        #                     "last": "Hayward",
+        #                     "public_id": "brenthayward",
+        #                     "type": "profile",
+        #                     "urn": "ACoAAACDbWkB8KJrVGkdxL9H-10JuniQwgRE9xk",
+        #                 },
+        #                 {
+        #                     "company_id": "3185",
+        #                     "name": "Salesforce",
+        #                     "public_id": "salesforce",
+        #                     "type": "company",
+        #                 },
+        #                 {
+        #                     "first": "David",
+        #                     "headline": "Vice President and CTO for Strategic Incubations at Microsoft | Author, O'Reilly's \"The AI Organization\"",
+        #                     "last": "Carmona",
+        #                     "public_id": "david-carmona",
+        #                     "type": "profile",
+        #                     "urn": "ACoAAACwKUUBaMp5tJwkp-qLN2ctY8lCJCZZIqE",
+        #                 },
+        #                 {
+        #                     "company_id": "1035",
+        #                     "name": "Microsoft",
+        #                     "public_id": "microsoft",
+        #                     "type": "company",
+        #                 },
+        #             ],
+        #             "images": [],
+        #             "num_comments": 3,
+        #             "num_empathy": 3,
+        #             "num_interests": 2,
+        #             "num_likes": 127,
+        #             "num_praises": 12,
+        #             "num_reactions": 144,
+        #             "num_reposts": 21,
+        #             "post_url": "https://www.linkedin.com/feed/update/urn:li:activity:7204773567891173377/",
+        #             "posted": "2024-06-07 09:17:56",
+        #             "poster_linkedin_url": "https://www.linkedin.com/company/hgcapital",
+        #             "repost_stats": {
+        #                 "num_appreciations": 0,
+        #                 "num_comments": 3,
+        #                 "num_empathy": 0,
+        #                 "num_interests": 4,
+        #                 "num_likes": 71,
+        #                 "num_maybe": 0,
+        #                 "num_praises": 7,
+        #                 "num_reactions": 82,
+        #                 "num_reposts": 2,
+        #             },
+        #             "repost_urn": "7207385164815945728",
+        #             "reposted": "2024-06-14 14:15:30",
+        #             "reshared": True,
+        #             "resharer_comment": "It was great to speak with so many like-minded leaders at the Hg Capital Leadership conference last week and thank you for the great questions and quality of the debate. Some post conference thoughts:\n\n1) The speed of change in the generative AI field is actually increasing, and no one can afford to sit on the sidelines. Companies need to address how generative AI changes both their internal operations and external products/services.\n\n2) To be successful, generative AI projects need to be integrated into the flow of day-to-day work. This allows you to bring relevant context to enhance the quality of any response - and metadata matters!  And as the early wave of consumer AI starts to merge with business AI, nothing is more important than trust.\n\n3) Generative AI projects need exec sponsorship and a business value case first - they are too important to sit as a pilot/POC with no outcome in mind.  Every great experiment starts with a discovery in mind, or a hypothesis to be proven or disproven. \n\nThank you Christopher Kindt, Sebastien Briens, Jason Richards, Lucio Di Ciaccio, Matthew Brockman for the invitation to speak and your hospitality. Special thanks to Polly Dean, and everyone at team Hg for the organizing and logistics.",
+        #             "text": "Today wraps our Software Leadership Gathering 2024! This year brought an even larger congregation of 120+ specially selected transatlantic leaders, who all stepped away from their day-to-day to engage in our annual retreat to discuss the shifting ‘techtonics’ impacting our industry.\n \nThe quality of discussion and value of expertise shared this year was outstanding - leaders from inside and outside of the Hg ecosystem taking on the world of fast-evolving technology. \n \nA special thank you to our speakers Joe Lonsdale (8VC) and founder of several tech unicorns), Eric Poirier (Addepar), Brent Hayward (Salesforce), David Carmona (Microsoft), Nagraj Kashyap (Touring Capital), Jae  Sook Evans (Oracle), Raghu Raghuram (VMware), Morgan Housel (best-selling author) and special guest Massimo Bottura - one of Michelin’s most highly decorated chefs and owner of two-year best restaurant in the world.\n\nMore to come in the coming weeks, but these snippets open up a little of the quality of the discussion: \n \n- The billion-dollar playbook => if you want to build a $ billion company today, you need to look at what’s possible now, that wasn’t possible five years ago.\n \n- The greatest value that AI unlocks is in services => AI suddenly allows us to compete with decades-old services companies. This is where the next value creation and innovation wave is.\n \n- Innovation through an engineering-led culture =>The greatest technology happens when people ignore ROI. Keep the ‘adults’ separate from the innovators!\n \n- Step back from the GenAI hype-cycle => People tend to over-estimate the speed-of-change and underestimate long-term impact and scale-of-change.\n \n- Agentic models and ‘middleware’ in GenAI => Here lies the next wave of GenAI adoption, moving on from internal productivity and efficiency gains, and towards long term revenue growth.\n\n- Cloud evolution in response to data sovereignty =>  Data privacy is really at the core of what is important - customers want control over their data.\n\n- Applications will become intrinsically tied to LLMs => The app stack will fundamentally change over the next few years. \n\n- What doesn’t change => Focusing on the things that never change is the secret to really understand the future. \n \nTo everyone else who attended across the software ecosystem, we’ll see you again next year!\n\n#SLG2024 #shiftingtechtonics. \n \nFor the latest on Hg and portfolio news, subscribe to our monthly updates: https://lnkd.in/esXyfRAv",
+        #             "time": "1 year ago",
+        #             "urn": "7204773567891173377",
+        #             "video": {
+        #                 "duration": 106433,
+        #                 "stream_url": "https://dms.licdn.com/playlist/vid/v2/D4E05AQETjwui8_am2A/mp4-720p-30fp-crf28/mp4-720p-30fp-crf28/0/1717751875741?e=1762912800&v=beta&t=3Ih3F51NOkcp-TggqdsPcTjVQbyyq7Kmgg20MxM0b74",
+        #             },
+        #         },
+        #         {
+        #             "attributes": [
+        #                 {
+        #                     "first": "Brent",
+        #                     "headline": "Head of Competitive Intelligence, Salesforce",
+        #                     "last": "Hayward",
+        #                     "public_id": "brenthayward",
+        #                     "type": "profile",
+        #                     "urn": "ACoAAACDbWkB8KJrVGkdxL9H-10JuniQwgRE9xk",
+        #                 }
+        #             ],
+        #             "images": [],
+        #             "num_appreciations": 2,
+        #             "num_comments": 1,
+        #             "num_empathy": 6,
+        #             "num_interests": 9,
+        #             "num_likes": 266,
+        #             "num_praises": 11,
+        #             "num_reactions": 294,
+        #             "num_reposts": 40,
+        #             "post_url": "https://www.linkedin.com/feed/update/urn:li:activity:7071488498809135105/",
+        #             "posted": "2023-06-05 14:10:40",
+        #             "poster_linkedin_url": "https://www.linkedin.com/company/mulesoft",
+        #             "repost_stats": {
+        #                 "num_appreciations": 2,
+        #                 "num_comments": 1,
+        #                 "num_empathy": 6,
+        #                 "num_interests": 9,
+        #                 "num_likes": 266,
+        #                 "num_maybe": 0,
+        #                 "num_praises": 11,
+        #                 "num_reactions": 294,
+        #                 "num_reposts": 40,
+        #             },
+        #             "repost_urn": "7071488877013680128",
+        #             "reposted": "2023-06-05 14:12:10",
+        #             "reshared": True,
+        #             "text": "1, 2, 3...automate! Brent Hayward shares three steps to drive intelligent automation in your business: https://muley.cc/45NGcG5",
+        #             "time": "2 years ago",
+        #             "urn": "7071488498809135105",
+        #             "video": {
+        #                 "duration": 30000,
+        #                 "stream_url": "https://dms.licdn.com/playlist/vid/v2/D4D10AQHr5dOfnGoMlw/mp4-720p-30fp-crf28/mp4-720p-30fp-crf28/0/1685974224095?e=1762912800&v=beta&t=J51D6u4V3jQy5A8Yme7Go0XCJ9KxByfFslZ19lKyUkI",
+        #             },
+        #         },
+        #         {
+        #             "attributes": [
+        #                 {
+        #                     "company_id": "31354582",
+        #                     "name": "Agentforce 360 Platform",
+        #                     "public_id": "salesforce-platform",
+        #                     "type": "company",
+        #                 },
+        #                 {
+        #                     "first": "Brent",
+        #                     "headline": "Head of Competitive Intelligence, Salesforce",
+        #                     "last": "Hayward",
+        #                     "public_id": "brenthayward",
+        #                     "type": "profile",
+        #                     "urn": "ACoAAACDbWkB8KJrVGkdxL9H-10JuniQwgRE9xk",
+        #                 },
+        #                 {
+        #                     "first": "Marla",
+        #                     "headline": "Senior Vice President, Product Management at Salesforce",
+        #                     "last": "Hay ",
+        #                     "public_id": "marlahay",
+        #                     "type": "profile",
+        #                     "urn": "ACoAAACP6okBf8YgWEaX31lS7QDKXo3G8hIhn4c",
+        #                 },
+        #                 {
+        #                     "first": "Sarah",
+        #                     "headline": "VP of Technology, AI (+ Machine Learning) at Intuit! Former Salesforce, Pivotal, PhD Biomedical Informatics, Stanford, SAIL (Stanford Artificial Intelligence Laboratory)",
+        #                     "last": "Aerni",
+        #                     "public_id": "sarahaerni",
+        #                     "type": "profile",
+        #                     "urn": "ACoAAAJ4YtQBqd6DpwxHTU_VIPWI5UD_KAI0Oig",
+        #                 },
+        #                 {
+        #                     "first": "Sanjna",
+        #                     "headline": "SVP of Product Marketing at Salesforce",
+        #                     "last": "Parulekar",
+        #                     "public_id": "sanjna-parulekar-0248a537",
+        #                     "type": "profile",
+        #                     "urn": "ACoAAAfI29wB9itqXFz_Okw_RnFfJ44r3wvI3H8",
+        #                 },
+        #                 {
+        #                     "first": "Kreena",
+        #                     "headline": "Director, Product Management at Salesforce (MuleSoft)",
+        #                     "last": "Mehta",
+        #                     "public_id": "kreenasmehta",
+        #                     "type": "profile",
+        #                     "urn": "ACoAABC-zdQBSIAVBk9pTX3PvuIE-CetJo7gjac",
+        #                 },
+        #             ],
+        #             "document": {
+        #                 "page_count": 3,
+        #                 "title": "IT Keynote: Build Your Customer Company at WTNY",
+        #                 "url": "https://media.licdn.com/dms/document/media/v2/D4E1FAQEZujDCzbJsaA/feedshare-document-url-metadata-scrapper-pdf/feedshare-document-url-metadata-scrapper-pdf/0/1682600524136?e=1762912800&v=beta&t=9FaDNO3smDXm0TNh6pKmiJfNikb8RqxtCWVV50OOEgs",
+        #             },
+        #             "images": [],
+        #             "num_comments": 2,
+        #             "num_likes": 68,
+        #             "num_praises": 2,
+        #             "num_reactions": 70,
+        #             "num_reposts": 12,
+        #             "post_url": "https://www.linkedin.com/feed/update/urn:li:activity:7057375355241652225/",
+        #             "posted": "2023-04-27 15:30:04",
+        #             "poster_linkedin_url": "https://www.linkedin.com/company/mulesoft",
+        #             "repost_stats": {
+        #                 "num_appreciations": 0,
+        #                 "num_comments": 2,
+        #                 "num_empathy": 0,
+        #                 "num_interests": 0,
+        #                 "num_likes": 68,
+        #                 "num_maybe": 0,
+        #                 "num_praises": 2,
+        #                 "num_reactions": 70,
+        #                 "num_reposts": 12,
+        #             },
+        #             "repost_urn": "7058828883910877184",
+        #             "reposted": "2023-05-01 15:45:52",
+        #             "reshared": True,
+        #             "text": "MuleSoft 🤝 Salesforce Platform\nMaking it easier for you to deploy faster, increasing developer efficiency, and saving on IT costs by connecting your data, automating intelligent processes, and deploying securely. Tune into the IT Keynote at #SalesforceTour New York or on Salesforce+. Let’s unleash innovation together: https://muley.cc/3LxoOgK\n\nJoin Brent Hayward, Marla Hay, Sarah Aerni, Sanjna Parulekar, and Kreena Mehta to Build Your Customer Company.",
+        #             "time": "2 years ago",
+        #             "urn": "7057375355241652225",
+        #         },
+        #     ]
+        # }
     except requests.exceptions.RequestException as e:
         raise
 
