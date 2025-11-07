@@ -428,7 +428,8 @@ def prompt_profil_comparison(
     }
 
     # Current profile from LinkedIn - safely access nested data
-    profile_data = profil_data.get("data", {})
+    # Handle case where data might be None
+    profile_data = profil_data.get("data") or {}
     current_profil = {
         "name": profile_data.get("full_name", ""),
         "desc": profile_data.get("about", ""),
@@ -596,6 +597,12 @@ def contact_enrichment(
     profil_data = get_linkedin_profil(profil_url)
     profil_posts = get_linkedin_posts(profil_url)
 
+    # Check if profile data was successfully retrieved
+    if not profil_data or profil_data.get("data") is None:
+        print(f"LinkedIn profile not found or unavailable: {profil_data.get('message', 'Unknown error')}")
+        print("Skipping contact enrichment for this profile")
+        return
+
     # weekly posts
     from datetime import datetime, timedelta
 
@@ -617,8 +624,11 @@ def contact_enrichment(
     print(f"needs_update: {needs_update}")
 
     if needs_update:
+        # Safely get profile about section
+        profile_about = profil_data.get("data", {}).get("about", "No description available")
+
         gen_description = generate_text(
-            user_prompt=f"Here is the description: {profil_data.get('data').get('about')}",
+            user_prompt=f"Here is the description: {profile_about}",
             system_prompt="""
 Goal: Create a concise, systematic, and readable profile of a CRM contact. Include professional, personal, and ecosystem-related information. Format in short bullet points or mini-paragraphs that are easy to scan.
 
