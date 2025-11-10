@@ -651,26 +651,6 @@ def contact_enrichment(
             "about", "No description available"
         )
 
-        gen_description = generate_text(
-            user_prompt=f"Here is the description: {profile_about}",
-            system_prompt="""
-Goal: Create a concise, systematic, and readable profile of a CRM contact. Include professional, personal, and ecosystem-related information. Format in short bullet points or mini-paragraphs that are easy to scan.
-
-Prompt:
-Focus on key professional roles, skills, and accomplishments.
-Include company, position, experience, and expertise areas.
-Mention projects, startups founded, GitHub/portfolio links, or notable work.
-Include personal interests, hobbies, or travel, if relevant.
-Include industry ecosystem insights (accelerators, investors, communities) if the contact is active in it.
-Keep each bullet or line simple, clear, and informative.
-Avoid fluff, exaggeration, or irrelevant details.
-*Do not add section titles just the content*
-""",
-            model="openai/gpt-4o",
-            temperature=0.7,
-        )
-        print(f"Generated Description: {gen_description}")
-
         # formatting - safely handle experiences
         profile_data = profil_data.get("data", {})
         experiences = profile_data.get("experiences", [])
@@ -689,7 +669,7 @@ Avoid fluff, exaggeration, or irrelevant details.
             )
 
         formatted_description = f"""
-        {gen_description}
+        {profile_about}
 
         {history}
         """
