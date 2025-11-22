@@ -401,10 +401,10 @@ def contact_enrichment(
             history = "\n".join(
                 [
                     f"""\
-{textwrap.dedent(exp).get("company", "").strip()}
-{textwrap.dedent(exp).get("title", "").strip()}
-{textwrap.dedent(exp).get("date_range", "").strip()}
-{textwrap.dedent(exp).get("description", "").strip()}
+{textwrap.dedent(exp.get("company", "")).strip()}
+{textwrap.dedent(exp.get("title", "")).strip()}
+{textwrap.dedent(exp.get("date_range", "")).strip()}
+{textwrap.dedent(exp.get("description", "")).strip()}
             """
                     for exp in experiences
                 ]
