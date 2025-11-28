@@ -410,7 +410,11 @@ def contact_enrichment(
                 ]
             ).rstrip()
 
-        formatted_description = f"{textwrap.dedent(profile_about).strip()}\n\n{textwrap.dedent(history).strip()}"
+        formatted_description = (
+            f"{textwrap.dedent(profile_about).strip() if profile_about else ''}"
+            f"\n\n"
+            f"{textwrap.dedent(history).strip() if history else ''}"
+        )
 
         print(formatted_description)
 
